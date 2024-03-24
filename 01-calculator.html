@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="https://kit.fontawesome.com/1e0ea0b576.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<style>
+    * {
+        font-size: 30px;
+        
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(#cde7ff, #e99629), rgba(0,0,0,0.2);
+        background-repeat:no-repeat ;
+        margin: 0;
+        padding: 0;
+    }
+
+    button {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: none;
+        color: white;
+        cursor: pointer;
+        margin: 7px;
+    }
+
+    #zero {
+        width: 135px;
+        border-radius: 30px;
+    }
+
+    input {
+        height: 50px;
+        width: 80%;
+        text-align: right;
+        box-shadow: rgba(45, 45, 46, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        border-radius: 20px;
+        border: none;
+        margin: 7px;
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+       background-color: #1C1C1C;
+       width: 24%;
+       padding: 10px;
+       border-radius: 20px;
+       box-shadow: rgba(45, 45, 46, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+       margin: 7px;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin: 7px;
+    }
+   
+    .operators {
+        background-color: #d3800b;
+    }
+
+    .numbers {
+        background-color: #545454;
+    }
+
+    #mode {
+        cursor: pointer;
+    }
+
+    body {
+        margin: 0%;
+        padding: 0%;
+    }
+    @media only screen and (max-width: 480px){
+        body {
+        background-color: white;
+        height: 100%;
+       }
+       .container {
+        width: 90%;
+        height: 100%;
+        margin: 0;
+       }
+
+       
+    }
+   
+</style>
+
+<div class="container">
+
+<input type="text" id="display" readonly>
+
+<div class="buttons">
+<button class="operators" id="mode"><i class="fa-solid fa-moon"></i></button>
+<button class="operators" id="clearAll">AC</button>
+<button class="operators" id="percentage">%</button>
+<button class="operators" id="divide">÷</button>
+
+</div>
+<div class="buttons">
+    
+    <button class="numbers" id="seven">7</button>
+    <button class="numbers" id="eight">8</button>
+    <button class="numbers" id="nine">9</button>
+    <button class="operators" id="multiply">×</button>
+</div>
+
+<div class="buttons">
+    
+    <button class="numbers" id="four">4</button>
+    <button class="numbers" id="five">5</button>
+    <button class="numbers" id="six">6</button>
+    <button class="operators" id="add">+</button>
+</div>
+
+<div class="buttons">
+    <button class="numbers" id="one">1</button>
+    <button class="numbers" id="two">2</button>
+    <button class="numbers" id="three">3</button>
+    <button class="operators" id="subtract">-</button>
+</div>
+
+<div class="buttons">
+    <button class="numbers" id="zero">0</button>
+    <button class="operators" id="decimal">.</button>
+    <button class="operators" id="equal">=</button>
+</div>
+</div>
+    <script>
+
+        
+        let calculation = "";
+
+        const display = document.querySelector("#display");
+        const container = document.querySelector(".container");
+        const oparators = document.querySelector(".operators");
+        const numbers = document.querySelector(".numbers");
+       
+
+        const one = document.getElementById("one");
+        const two = document.getElementById("two");
+        const three = document.getElementById("three");
+        const four = document.getElementById("four");
+        const five = document.getElementById("five");
+        const siz = document.getElementById("six");
+        const seven = document.getElementById("seven");
+        const eight = document.getElementById("eight");
+        const nine = document.getElementById("nine");
+        const zero = document.getElementById("zero");
+
+        const divide = document.getElementById("divide");
+        const multiply = document.getElementById("multiply");
+        const add = document.getElementById("add");
+        const subtract = document.getElementById("subtract");
+
+        const deleteNum = document.getElementById("delete");
+        const clearAll = document.getElementById("clearAll");
+        const percentage = document.getElementById("percentage");
+        const decimal = document.getElementById("decimal");
+        const equal = document.getElementById("equal");
+
+    
+        function displayValue() {
+            display.value += calculation;
+        }
+
+        function addValue(button_value) {
+            calculation = button_value;
+        }
+
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            }
+           catch(error) {
+            display.value = "Error"
+           }
+        }
+
+        function clearAllDisplay(){
+            display.value = "";
+        }
+      
+        clearAll.onclick = function() {
+            clearAllDisplay();
+        }
+
+      
+
+       zero.addEventListener('click', function() {
+        addValue('0');
+        displayValue();
+       });
+
+       one.addEventListener('click', function() {
+        addValue('1');
+        displayValue();
+       });
+
+       two.addEventListener('click', function() {
+        addValue('2');
+        displayValue();
+       });
+
+       three.addEventListener('click', function() {
+        addValue('3');
+        displayValue();
+       });
+
+       four.addEventListener('click', function() {
+        addValue('4');
+        displayValue();
+       });
+
+       five.addEventListener('click', function() {
+        addValue('5');
+        displayValue();
+       });
+
+       six.addEventListener('click', function() {
+        addValue('6');
+        displayValue();
+       });
+       
+       seven.addEventListener('click', function() {
+        addValue('7');
+        displayValue();
+       });
+
+       eight.addEventListener('click', function() {
+        addValue('8');
+        displayValue();
+       });
+
+       nine.addEventListener('click', function() {
+        addValue('9');
+        displayValue();
+       });
+       
+       decimal.addEventListener('click', function() {
+        addValue('.');
+        displayValue();
+       });
+       
+       percentage.addEventListener('click', function() {
+        addValue('%');
+        displayValue();
+       });
+       
+       
+
+       add.onclick = function() {
+        addValue(' + ');
+        displayValue();
+       }
+
+       subtract.addEventListener('click', function() {
+        addValue(' - ');
+        displayValue();
+       });
+
+       multiply.addEventListener('click', function() {
+        addValue(' × ');
+        displayValue();
+       });
+
+       divide.addEventListener('click', function() {
+        addValue(' / ');
+        displayValue();
+       });
+     
+       equal.addEventListener('click', function() {
+        calculate();
+       });
+
+       const mode = document.getElementById("mode");
+       let toggle = false;
+       var bodyElement = document.body;
+
+       mode.addEventListener("click", function(){
+        
+        if(toggle == false) {
+       
+        container.style.backgroundColor = "white";
+        one.style.backgroundColor = "#1C1C1C";
+        two.style.backgroundColor = "#1C1C1C";
+        three.style.backgroundColor = "#1C1C1C";
+        four.style.backgroundColor = "#1C1C1C";
+        five.style.backgroundColor = "#1C1C1C";
+        six.style.backgroundColor = "#1C1C1C";
+        seven.style.backgroundColor = "#1C1C1C";
+        eight.style.backgroundColor = "#1C1C1C";
+        nine.style.backgroundColor = "#1C1C1C";
+        zero.style.backgroundColor = "#1C1C1C";
+        decimal.style.backgroundColor = "#1C1C1C";
+        
+        toggle = true;
+    } else if(toggle == true){
+       
+        container.style.backgroundColor = "#1C1C1C";
+        one.style.backgroundColor = "#505050";
+        two.style.backgroundColor = "#505050";
+        three.style.backgroundColor = "#505050";
+        four.style.backgroundColor = "#505050";
+        five.style.backgroundColor = "#505050";
+        six.style.backgroundColor = "#505050";
+        seven.style.backgroundColor = "#505050";
+        eight.style.backgroundColor = "#505050";
+        nine.style.backgroundColor = "#505050";
+      
+
+        toggle = false;
+    }
+       });
+       
+
+    </script>
+
+</body>
+</html>
